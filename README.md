@@ -63,7 +63,6 @@
     ```
 
 ## Generate Geojson Data
-
-    ```bash
-    node location-generator.js
-    ```
+```bash
+./do.sh
+```
