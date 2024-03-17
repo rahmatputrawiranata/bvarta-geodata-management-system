@@ -9,6 +9,14 @@ volumes:
   mongodb_data:
 
 services:
+  app:
+    build: ../app
+    networks:
+      - bvarta_geodata_management_system
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
   mongodb:
     image: mongo
     volumes:
