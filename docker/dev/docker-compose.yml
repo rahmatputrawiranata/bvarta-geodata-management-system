@@ -1,0 +1,31 @@
+version: '3'
+name: 'bvarta-geodata-management-system'
+
+networks:
+  bvarta_geodata_management_system:
+    driver: bridge
+    
+volumes:
+  mongodb_data:
+  rabbitmq_data:
+  rabbitmq_logs:
+
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - bvarta_geodata_management_system
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    networks:
+      - bvarta_geodata_management_system
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_logs:/var/log/rabbitmq
